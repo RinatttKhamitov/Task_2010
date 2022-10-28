@@ -25,9 +25,21 @@ namespace Тумаков
             bank3.Deposit(10000);
             bank3.Withdraw(100);
             bank3.Print();
-            Console.ReadKey();
 
+            Console.WriteLine();
+            Console.WriteLine("ДЗ");
+            Home home = new Home();
+            home.GetNumber();
+            home.Height = 50;
+            home.NumberOfStoreys = 5;
+            home.NumberOfApartments = 65;
+            home.Entrances = 5;
+            home.GetEntrances();
+            home.GetFloorHeight(3);
+            home.GetFloorFlat();
+            Console.ReadKey();
         }
+
         static void SetAccountNumber(ref List<int> list, ref Bank2 bank)
         {
             Random rnd = new Random();
@@ -38,7 +50,7 @@ namespace Тумаков
             {
                 value = rnd.Next(1000000, 10000000);
             }
-            bank.AccountNumber = value; 
+            bank.AccountNumber = value;
             list.Add(value);
         }
     }
@@ -235,7 +247,7 @@ namespace Тумаков
     class Home
     {
         protected int buildingNumber;
-        public int AccountNumber
+        public int BuildingNumber
         {
             get
             {
@@ -245,6 +257,28 @@ namespace Тумаков
             {
                 buildingNumber = value;
             }
+        }
+        public static int AllBuildingNumbers = 0;
+        public double Height { get; set; }
+        public int NumberOfStoreys { get; set; }
+        public int NumberOfApartments { get; set; }
+        public int Entrances { get; set; }
+        public void GetNumber()
+        {
+            AllBuildingNumbers++;
+            buildingNumber = AllBuildingNumbers;
+        }
+        public void GetFloorHeight(int floor)
+        {
+            Console.WriteLine($"высота этажа = {(double)((Height * floor) / NumberOfStoreys)}");
+        }
+        public void GetEntrances()
+        {
+            Console.WriteLine($"количество квартир в подъезде = {NumberOfApartments/ Entrances}");
+        }
+        public void GetFloorFlat()
+        {
+            Console.WriteLine($"количество квартир на этаже = {NumberOfApartments / NumberOfStoreys}");
         }
 
     }
